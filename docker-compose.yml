@@ -1,0 +1,33 @@
+version: '3.5'
+services:
+  postgresql_db:
+    container_name: citelis_rel_db
+    image: postgres:11.2-alpine
+    ports:
+      - "8181:5432"
+    environment:
+      - POSTGRES_USER=jafet
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=citelis
+    volumes:
+      - /Users/jafet/Documents/pgDB:/var/lib/postgresql/data
+  mongo_db:
+    container_name: citelis_non_rel_db
+    image: mongo
+    ports:
+      - "8282:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=citelis
+      - MONGO_INITDB_ROOT_USERNAME=jafet
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+    volumes:
+      - /Users/jafet/Documents/mongoDB:/data/db
+  redis:
+    container_name: citelis_redis
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+    volumes:
+      - /Users/jafet/Documents/redis:/data
+
+
